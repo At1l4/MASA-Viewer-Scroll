@@ -1,0 +1,78 @@
+
+Basic Types
+
+Number are always in network byte order (big endian).
+
+uint1	
+uint2	
+uint4	
+int1	
+int2	
+int4	
+
+
+beb128 - big endian base128 (está definido no BER? - Basic Encoding Rules ASN.1)
+
+
+
+
+The binary file contains 4 sections.
+
+=======================================
+Literal			"CGFF"					Literal 4-bytes header used to verify the file type
+uint1			major_version			Major version of the file format. Different major versions are incompatible.
+uint1			minor_version			Minor version of the file format. Different minor versions are compatible.
+=======================================
+uint4			count				
+fieldlist_t		seqinfo #1				
+fieldlist_t		seqinfo #2
+...
+fieldlist_t		seqinfo #count
+=======================================
+fieldlist_t 	alignment_parameters
+=======================================
+uint4			n				
+fieldlist_t		alignment_results #1
+fieldlist_t		alignment_results #2
+..
+fieldlist_t		alignment_results #n
+=======================================
+
+
+fieldlist_t
+field_t		field_1
+field_t		field_2
+...
+field_t		END_OF_FIELDS
+
+
+field_t
+uint1		field_code
+var			field_data
+
+
+
+
+END_OF_FIELDS					0
+FIELD_ALIGNMENT_METHOD			1
+FIELD_SCORING_SYSTEM			2
+FIELD_PENALTY_SYSTEM			3
+FIELD_SEQUENCE_PARAMS			4
+
+
+FIELD_SEQUENCE_DESCRIPTION		1
+FIELD_SEQUENCE_TYPE			 	2
+FIELD_SEQUENCE_SIZE			 	3
+FIELD_SEQUENCE_HASH			 	4
+FIELD_SEQUENCE_DATA_PLAIN		5
+FIELD_SEQUENCE_DATA_COMPRESSED	6
+
+FIELD_RESULT_RAW_SCORE			1
+FIELD_RESULT_BIT_SCORE			2
+FIELD_RESULT_E_VALUE			3
+FIELD_RESULT_SCORE_STATISTICS	4
+FIELD_RESULT_GAP_LIST			5
+FIELD_RESULT_BLOCKS			 	6
+FIELD_RESULT_CELLS				7
+	
+

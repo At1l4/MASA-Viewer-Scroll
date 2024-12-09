@@ -1,0 +1,1 @@
+jar -cvfm masa-viewer.jar ../onejar/boot-manifest.mf -C ../onejar .
