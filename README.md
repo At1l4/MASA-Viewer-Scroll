@@ -23,7 +23,7 @@ Follow these steps to set up MASA-Viewer:
 java -jar masa-viewer.jar
 ```
 
-2. Load the .bin file containing the alignment data. There is a [sample folder](tree/main/sample) with .bin and .fasta files.
+2. Load the .bin file containing the alignment data. There is a [sample folder](sample) with .bin and .fasta files.
 3. Load the corresponding FASTA file for each sequence.
    Note: The NCBI download feature is currently unavailable.
 4. Explore and analyze the alignment data through the visual interface. You can select or drilldown the visualization (mouse scroll wheel).
