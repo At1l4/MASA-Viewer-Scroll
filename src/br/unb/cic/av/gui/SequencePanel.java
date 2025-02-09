@@ -60,7 +60,7 @@ public class SequencePanel extends JPanel {
 	private static Image IMAGE_NOT_OK;
 	private static Image FOLDER_GLOBE;
 	private JLabel iconLabel;
-	private JComboBox localRepositoryCombo;
+	private JComboBox<String> localRepositoryCombo;
 	private JButton importButton;
 	private JLabel importStatusLabel;
 
@@ -78,6 +78,26 @@ public class SequencePanel extends JPanel {
 			e.printStackTrace();
 		}
 	}
+
+
+private JScrollPane getInfoScrollPane(SequenceInfo info) {
+    String description = "Name: " + info.getDescription() + "\n" +
+                         "Access#: " + info.getAccessionNumber() + "\n" +
+                         "Length: " + info.getSize() + "\n" +
+                         "Hash: " + info.getHash();
+
+    JTextArea textArea = new JTextArea(description);
+    textArea.setLineWrap(true);
+    textArea.setWrapStyleWord(true);
+    textArea.setEditable(false);
+    textArea.setBackground(null);
+
+    JScrollPane scrollPane = new JScrollPane(textArea);
+    scrollPane.setPreferredSize(new Dimension(250, 80));
+    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+    return scrollPane;
+}
 
 	public SequencePanel(SequenceInfo info) {
 		this.info = info;
@@ -100,10 +120,10 @@ public class SequencePanel extends JPanel {
 		
 		c.anchor = GridBagConstraints.LINE_START;
 		//c.fill = GridBagConstraints.HORIZONTAL;
-		JLabel label = getInfoLabel(info);
+    JScrollPane infoScrollPane = getInfoScrollPane(info);
 		c.gridx = 1;
 		c.gridy = 0;
-		add(label, c);
+    add(infoScrollPane, c);
 
 		
 		
@@ -111,7 +131,7 @@ public class SequencePanel extends JPanel {
 		actionPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
 		
-		localRepositoryCombo = new JComboBox();
+		localRepositoryCombo = new JComboBox<String>();
 		updateLocalRepository();
 		
 		importButton = new JButton("Import...");
@@ -164,7 +184,7 @@ public class SequencePanel extends JPanel {
 		accessionNumbers.add(0, "--- Import from NCBI");
 		accessionNumbers.add(1, "--- Import local file");
 		accessionNumbers.add(2, "--- Empty Sequence");
-		localRepositoryCombo.setModel(new DefaultComboBoxModel(accessionNumbers));
+		localRepositoryCombo.setModel(new DefaultComboBoxModel<String>(accessionNumbers));
 		localRepositoryCombo.setSelectedIndex(2); //Empty Sequence
 		File file = LocalRepository.findSequence(info);
 		if (file != null) {
