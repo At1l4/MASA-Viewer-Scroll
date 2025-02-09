@@ -51,6 +51,9 @@ import br.unb.cic.av.repository.LocalRepository;
 import br.unb.cic.av.repository.NCBIRespositoryStream;
 import br.unb.cic.av.repository.RepositoryStream;
 
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 public class SequencePanel extends JPanel {
 
 	private SequenceInfo info;
